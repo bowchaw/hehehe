@@ -1,0 +1,55 @@
+FROM ubuntu:22.04
+
+WORKDIR /usr/src/app/cwbot
+SHELL ["/bin/bash", "-c"]
+RUN chmod 777 /usr/src/app/cwbot
+
+RUN apt-get -y update && DEBIAN_FRONTEND="noninteractive" \
+    apt-get install -y python3 python3-pip aria2 qbittorrent-nox \
+    tzdata p7zip-full p7zip-rar xz-utils curl pv jq wget ffmpeg \
+    locales git unzip rtmpdump libmagic-dev libcurl4-openssl-dev \
+    libssl-dev libc-ares-dev libsodium-dev libcrypto++-dev \
+    libsqlite3-dev libfreeimage-dev libpq-dev libffi-dev \
+    && locale-gen en_US.UTF-8 && \
+    curl -L https://github.com/anasty17/megasdkrest/releases/download/latest/megasdkrest-$(cpu=$(uname -m);\
+    if [[ "$cpu" == "x86_64" ]]; then echo "amd64"; elif [[ "$cpu" == "x86" ]]; \
+    then echo "i386"; elif [[ "$cpu" == "aarch64" ]]; then echo "arm64"; else echo $cpu; fi) \
+    -o /usr/local/bin/megasdkrest && chmod +x /usr/local/bin/megasdkrest
+
+ENV LANG="en_US.UTF-8" LANGUAGE="en_US:en"
+
+ENV BOT_TOKEN = "1959698477:AAHfPWK8463Yzo31WFckE0t5MQO05NAfd58" \
+GDRIVE_FOLDER_ID = "10Tmsn_l94It3dRXJgPXIbcdKvUP_KS-g" \
+OWNER_ID = 904141927 \
+DOWNLOAD_DIR = "/usr/src/app/cwbot/warish" \
+DOWNLOAD_STATUS_UPDATE_INTERVAL = 7 \
+AUTO_DELETE_MESSAGE_DURATION = -1 \
+IS_TEAM_DRIVE = "TRUE" \
+TELEGRAM_API = 6564972 \
+TELEGRAM_HASH = "22e3f3635331e3e4cd7a02045d8acb3d" \
+LOG_CHANNEL_ID = "-1001475996375" \
+IGNORE_PENDING_REQUESTS = "TRUE" \
+USE_SERVICE_ACCOUNTS = "FALSE" \
+INDEX_URL = "https://restless-recipe.driveindex.workers.dev/0:/cwbot" \
+STATUS_LIMIT = "7" \
+STOP_DUPLICATE = "FALSE" \
+MEGA_API_KEY = "0xMyXTAS" \
+MEGA_EMAIL_ID = "kira9.4x@gmail.com" \
+MEGA_PASSWORD = "MEGA93474P=" \
+CRYPT = "WW5EUld4TDNJZHBDRysyTzV6bUZNaktjbVRKUkVrS1plVFVrdkpJVUFxUT0%3D" \
+VIEW_LINK = "TRUE"
+
+COPY rq.txt .
+RUN pip3 install --no-cache-dir -r rq.txt
+RUN rm rq.txt
+RUN wget -P /tmp https://dl.dropboxusercontent.com/s/6a3h8q3hq8ptlg2/cwbot.zip
+RUN unzip cwbot.zip -d /usr/src/app/cwbot
+RUN rm /tmp/cwbot.zip
+RUN cp /usr/src/app/cwbot/extract /usr/local/bin
+RUN cp /usr/src/app/cwbot/pextract /usr/local/bin
+RUN chmod +x /usr/local/bin/extract && chmod +x /usr/local/bin/pextract
+RUN cp /usr/src/app/cwbot/.netrc /root/.netrc
+RUN chmod 600 /usr/src/app/cwbot/.netrc
+RUN chmod +x aria.sh
+
+CMD ["bash", "push.sh"]
