@@ -33,10 +33,6 @@ USE_SERVICE_ACCOUNTS="False" \
 INDEX_URL="https://restless-recipe.driveindex.workers.dev/0:/cwbot" \
 STATUS_LIMIT="7" \
 STOP_DUPLICATE="False" \
-MEGA_API_KEY="0xMyXTAS" \
-MEGA_EMAIL_ID="kira9.4x@gmail.com" \
-MEGA_PASSWORD="MEGA93474P=" \
-CRYPT="WW5EUld4TDNJZHBDRysyTzV6bUZNaktjbVRKUkVrS1plVFVrdkpJVUFxUT0%3D" \
 VIEW_LINK="True"
 
 COPY rq.txt .
