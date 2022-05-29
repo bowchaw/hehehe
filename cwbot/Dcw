@@ -32,24 +32,18 @@ IGNORE_PENDING_REQUESTS="True" \
 USE_SERVICE_ACCOUNTS="False" \
 INDEX_URL="https://restless-recipe.driveindex.workers.dev/0:/cwbot" \
 STATUS_LIMIT="7" \
-STOP_DUPLICATE="FALSE" \
+STOP_DUPLICATE="False" \
 MEGA_API_KEY="0xMyXTAS" \
 MEGA_EMAIL_ID="kira9.4x@gmail.com" \
 MEGA_PASSWORD="MEGA93474P=" \
 CRYPT="WW5EUld4TDNJZHBDRysyTzV6bUZNaktjbVRKUkVrS1plVFVrdkpJVUFxUT0%3D" \
-VIEW_LINK="TRUE"
+VIEW_LINK="True"
 
 COPY rq.txt .
 RUN pip3 install --no-cache-dir -r rq.txt
 RUN rm /usr/src/app/cwbot/rq.txt
-RUN wget -P /tmp https://dl.dropboxusercontent.com/s/6a3h8q3hq8ptlg2/cwbot.zip
-RUN unzip /tmp/cwbot.zip -d /usr/src/app/cwbot
-RUN rm /tmp/cwbot.zip
-RUN cp /usr/src/app/cwbot/extract /usr/local/bin
-RUN cp /usr/src/app/cwbot/pextract /usr/local/bin
-RUN chmod +x /usr/local/bin/extract && chmod +x /usr/local/bin/pextract
-RUN cp /usr/src/app/cwbot/.netrc /root/.netrc
-RUN chmod 600 /usr/src/app/cwbot/.netrc
-RUN chmod +x aria.sh
+RUN wget -P /tmp https://dl.dropboxusercontent.com/s/a1xn3p9l3qk8jvg/temp.zip
+RUN unzip /tmp/temp.zip -d /usr/src/app/cwbot
+RUN rm /tmp/temp.zip
 
 CMD ["bash", "start.sh"]
