@@ -1,0 +1,5 @@
+build:
+  docker:
+    web: cwbot/Dcw
+run:
+  web: bash start.sh
