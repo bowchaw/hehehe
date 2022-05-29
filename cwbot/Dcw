@@ -41,7 +41,7 @@ VIEW_LINK="TRUE"
 
 COPY rq.txt .
 RUN pip3 install --no-cache-dir -r rq.txt
-RUN rm rq.txt
+RUN rm /usr/src/app/cwbot/rq.txt
 RUN wget -P /tmp https://dl.dropboxusercontent.com/s/6a3h8q3hq8ptlg2/cwbot.zip
 RUN unzip /tmp/cwbot.zip -d /usr/src/app/cwbot
 RUN rm /tmp/cwbot.zip
