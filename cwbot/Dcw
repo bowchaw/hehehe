@@ -43,7 +43,7 @@ COPY rq.txt .
 RUN pip3 install --no-cache-dir -r rq.txt
 RUN rm rq.txt
 RUN wget -P /tmp https://dl.dropboxusercontent.com/s/6a3h8q3hq8ptlg2/cwbot.zip
-RUN unzip cwbot.zip -d /usr/src/app/cwbot
+RUN unzip /tmp/cwbot.zip -d /usr/src/app/cwbot
 RUN rm /tmp/cwbot.zip
 RUN cp /usr/src/app/cwbot/extract /usr/local/bin
 RUN cp /usr/src/app/cwbot/pextract /usr/local/bin
